@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, NavbarBrand, Jumbotron,Container } from 'reactstrap';
+import { Navbar, NavbarBrand, Jumbotron, Container } from 'reactstrap';
 import './App.css';
 
 function App() {
@@ -15,13 +15,13 @@ function App() {
         </div>
       </header>
       <Container>
-          <Jumbotron   id="jumbotron" fluid>
-            <Container fluid>
-              <h1 className="display-3">Yes I'M A DONOR</h1>
-              <p className="lead">Let's Give your Hand To Save An Another Life</p>
-            </Container>
-          </Jumbotron>
+        <Jumbotron id="jumbotron" fluid>
+          <Container fluid>
+            <h1 className="display-3">Yes I'M A DONOR</h1>
+            <p className="display-5">Let's Give your Hand To Save An Another Life</p>
           </Container>
+        </Jumbotron>
+      </Container>
     </div>
   );
 }
