@@ -1,7 +1,4 @@
-#jumbotron {
-  background:url("https://www.biospectrumindia.com/uploads/articles/1-14431.jpg") center center / cover no-repeat;
-  height: 100%;
-}
+
 
 .row-header{
   margin:0px auto;
@@ -23,7 +20,7 @@
 .jumbotron {
   padding:70px 30px 70px 30px;
   margin:0px auto;
-  background: #9575CD ;
+  background:url("https://www.biospectrumindia.com/uploads/articles/1-14431.jpg") center center / cover no-repeat;
   color:floralwhite;
 }
 
@@ -33,7 +30,4 @@ address{
   color:#0f0f0f;
 }
 
-.navbar-dark {
-  background-color: #512DA8;
-}
 
