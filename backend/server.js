@@ -30,6 +30,17 @@ organRoutes.route('/').get(function(req, res) {
     });
 });
 
+organRoutes.route('/add').post(function(req, res) {
+    let organ = new Organ(req.body);
+    organ.save()
+        .then(organ => {
+            res.status(200).json({'organ': 'organ added successfully'});
+        })
+        .catch(err => {
+            res.status(400).send('adding new organ failed');
+        });
+});
+
 userRoutes.route('/new-user').post(function(req, res) {
     let user = new User(req.body);
     user.save()
