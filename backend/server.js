@@ -30,6 +30,30 @@ organRoutes.route('/').get(function(req, res) {
     });
 });
 
+userRoutes.route('/new-user').post(function(req, res) {
+    let user = new User(req.body);
+    user.save()
+        .then(user => {
+            res.status(200).json({'user': 'User Added Successfully'});
+        })
+        .catch(err => {
+            res.status(400).send('Adding new User Failed');
+        });
+});
+
+userRoutes.route('/getUsers').get(function(req, res) {
+    User.find(function(err, users) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(users);
+        }
+    });
+});
+
+app.use('/organs', organRoutes);
+app.use('/users', userRoutes);
+
 app.listen(PORT, function() {
     console.log("Server is running on Port: " + PORT);
 });
