@@ -30,6 +30,28 @@ organRoutes.route('/').get(function(req, res) {
     });
 });
 
+organRoutes.route('/update/:id').post(function(req, res) {
+    Organ.findById(req.params.id, function(err, organ) {
+        if (!organ)
+            res.status(404).send("data is not found");
+        else
+            organ.organ_type = req.body.organ_type;
+            organ.organ_date = req.body.organ_date;
+            organ.organ_representative = req.body.organ_representative;
+            organ.organ_diseases = req.body.organ_diseases;
+            organ.organ_note = req.body.organ_note;
+            organ.organ_contact = req.body.organ_contact;
+            organ.organ_blood = req.body.organ_blood;
+
+            organ.save().then(organ => {
+                res.json('Organ updated!');
+            })
+            .catch(err => {
+                res.status(400).send("Update not possible");
+            });
+    });
+});
+
 organRoutes.route('/add').post(function(req, res) {
     let organ = new Organ(req.body);
     organ.save()
