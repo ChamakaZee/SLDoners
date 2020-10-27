@@ -30,6 +30,30 @@ organRoutes.route('/').get(function(req, res) {
     });
 });
 
+organRoutes.route('/list').get(function(req, res) {
+    Organ.find(function(err, organs) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(organs);
+        }
+    });
+});
+
+organRoutes.route('/:id').get(function(req, res) {
+    let id = req.params.id;
+    Organ.findById(id, function(err, organ) {
+        res.json(organ);
+    });
+});
+
+organRoutes.route('/view:id').get(function(req, res) {
+    let id = req.params.id;
+    Organ.findById(id, function(err, organ) {
+        res.json(organ);
+    });
+});
+
 organRoutes.route('/update/:id').post(function(req, res) {
     Organ.findById(req.params.id, function(err, organ) {
         if (!organ)
