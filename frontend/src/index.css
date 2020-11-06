@@ -11,3 +11,36 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.completed {
+  text-decoration: line-through;
+}
+
+.form-group.required .control-label:after {
+  content:"*";
+  color:red;
+}
+
+.alert-invisible {
+  display: none;
+}
+
+.alert-visible {
+  display: inline;
+}
+
+.login-right {
+  float:right;
+}
+
+.background-color-main {
+  background-color : #ecf1f5;
+}
+
+.full-width {
+  width: 100vw;
+}
+
+.full-height{
+  height: 100vh;
+}
