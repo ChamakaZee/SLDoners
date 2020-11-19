@@ -1,38 +1,25 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import Navigation from './Navigation';
+import logo5 from "../images/5.JPG";
+import logo from "../images/logo_1.JPG";
 
 class Header extends Component {
   render() {
     return (
-        <div className="container">
-          <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <h6 class="navbar-brand" target="_blank">
-              <img src={logo5} width="100" height="50" alt="#" />
-            </h6>
-            <h3>Helping Hand Foundation <h5>Donate Your Organ , You Could Save Many Lives</h5></h3>
-          
-            </nav>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <div className="collpase navbar-collapse">
-              <ul className="navbar-nav mr-auto">
-                <li className="navbar-item">
-                  <Link to="/create" className="nav-link">Donate Organs</Link>
-                </li>
-                <li className="navbar-item">
-                  <Link to="/list" className="nav-link">Request Organs</Link>
-                </li>
-                <li className="navbar-item">
-                  <Link to="/info" className="nav-link">How Donation Works</Link>
-                </li>
-                <li className="navbar-item">
-                  <Link to="/contact" className="nav-link">Contact Us</Link>
-                </li>
-              </ul>
-            </div>
-          </nav>
-          <br/>
-          <div><img src={mainImg} alt="organs"/></div>
-        </div>
+      <div>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <h6 class="navbar-brand" target="_blank">
+            <img src={logo5} width="100" height="50" alt="#" />
+          </h6>
+          <h3>Helping Hand Foundation <h5>Donate Your Organ , You Could Save Many Lives</h5></h3>
+          <div class="ml-auto">
+            <img src={logo} class="rounded float-right" width="100" height="80" alt="#"></img>
+          </div>
+        </nav>
+        <h6>
+          <Navigation />
+        </h6>
+      </div>
     );
   }
 }
