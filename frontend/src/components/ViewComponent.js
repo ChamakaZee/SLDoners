@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import mainImg from "../images/main.JPG";
 import viewImg from "../images/view-organ.jpg";
 
@@ -23,6 +24,27 @@ export default class ViewComponent extends Component {
             organ_blood: '',
             organ_contact: ''
         }
+    }
+
+    componentDidMount() {
+        axios.get('http://localhost:4000/organs/' + this.props.match.params.id)
+            .then(response => {
+                this.setState({
+                    organ_type: response.data.organ_type,
+                    organ_date: response.data.organ_date,
+                    organ_representative: response.data.organ_representative,
+                    organ_diseases: response.data.organ_diseases,
+                    organ_note: response.data.organ_note,
+                    organ_blood: response.data.organ_blood,
+                    organ_contact: response.data.organ_contact
+                })
+
+                console.log(response.data);
+            })
+
+            .catch(function (error) {
+                console.log(error);
+            })
     }
 
     onChangeOrganType(e) {
