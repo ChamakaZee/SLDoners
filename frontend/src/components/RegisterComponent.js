@@ -14,9 +14,32 @@ export default function RegisterComponent() {
         return email.length > 0 && fullName.length > 0;
     }
 
+    function onSubmit(e) {
+        e.preventDefault();
+
+        const newUser = {
+            fullName: fullName,
+            email: email,
+            password: password,
+            dateOfBirth: dateOfBirth,
+            ssn: ssn,
+            adress: adress,
+            contactNo: contactNo
+
+        }
+
+        console.log(newUser);
+
+        axios.post('http://localhost:4000/users/new-user', newUser)
+            .then(res => console.log(res.data));
+
+        alert("User Registered Succesfully");
+        history.push("/donate");
+    }
+
     return (
         <div className="Login">
-            <form>
+            <form onSubmit={onSubmit}>
                 <div className="form-group required">
                     <label class="control-label">Full Name </label>
                     <input type="text"
