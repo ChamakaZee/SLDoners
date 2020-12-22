@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import mainImg from "../images/main.JPG";
 
 export default class DonateComponent extends Component {
@@ -63,7 +64,78 @@ export default class DonateComponent extends Component {
         console.log(`Organ Diseases: ${this.state.organ_diseases}`);
         console.log(`Organ Note: ${this.state.organ_note}`);
         console.log(`Organ Blood: ${this.state.organ_blood}`);
+        if (this.handleValidation()) {
+            const newOrgan = {
+                organ_type: this.state.organ_type,
+                organ_date: this.state.organ_date,
+                organ_representative: this.state.organ_representative,
+                organ_contact: this.state.organ_contact,
+                organ_diseases: this.state.organ_diseases,
+                organ_note: this.state.organ_note,
+                organ_blood: this.state.organ_blood
+            };
+
+            axios.post('http://localhost:4000/organs/add', newOrgan)
+                .then(res => console.log(res.data));
+
+            this.setState({
+                organ_agreed: '',
+                organ_date: '',
+                organ_representative: '',
+                organ_contact: '',
+                organ_diseases: '',
+                organ_note: '',
+                organ_blood: '',
+                errors: {}
+            })
+            alert("Organ Detail Saved Succesfully");
+        } else {
+            alert("You should fill the mandatory fields");
+        }
     }
+
+    handleValidation() {
+        let errors = {};
+        let formIsValid = true;
+
+        //Name
+        if (!this.state.organ_representative) {
+            formIsValid = false;
+            errors["nominee_name"] = "Cannot be Empty";
+        }
+
+        if (!this.state.organ_type) {
+            formIsValid = false;
+            errors["organ_type"] = "Cannot be Empty";
+        }
+
+        if (!this.state.organ_blood) {
+            formIsValid = false;
+            errors["organ_blood"] = "Cannot be Empty";
+        }
+
+        if (typeof this.state.organ_representative !== "undefined") {
+            if (!this.state.organ_representative.match(/^[a-zA-Z\s]*$/)) {
+                formIsValid = false;
+                errors["name"] = "Only letters";
+            }
+        }
+        // contact
+        if (!this.state.organ_contact) {
+            formIsValid = false;
+            errors["nominee_contact"] = "Cannot be Empty";
+        }
+
+        // deseasas
+        if (!this.state.organ_diseases) {
+            formIsValid = false;
+            errors["donar_diseases"] = "Can not be Empty , No-Deseasas : please menctioned ";
+        }
+
+        this.setState({ errors: errors });
+        return formIsValid;
+    }
+
 
     render() {
         return (
