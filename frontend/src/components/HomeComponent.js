@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
+import axios from 'axios';
 
 export default function HomeComponent() {
     const [email, setEmail] = useState("");
@@ -13,6 +14,29 @@ export default function HomeComponent() {
 
     function handleSubmit(event) {
         event.preventDefault();
+
+        axios.get('http://localhost:4000/users/getUsers')
+            .then(response => {
+                console.log(response.data);
+                console.log("Form User : " + email);
+                console.log("From password : " + password);
+
+                let registeredUser = false;
+                const numbers = response.data;
+
+                numbers.forEach(function (number) {
+                    if (number.email == email && number.password == password) {
+                        registeredUser = true;
+                        console.log("User Founds : Already registered user : " + email); // => 
+                        history.push("/donate");
+                    }
+                });
+
+                console.log("User Status : " + registeredUser);
+                if (!registeredUser) {
+                    alert("Invalied User Name or Password");
+                }
+            });
     }
 
     return (
