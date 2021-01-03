@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import axios from 'axios';
 import mainImg from "../images/main.JPG";
 
 const Organ = props => (
@@ -23,6 +24,16 @@ export default class RequestComponent extends Component {
         this.onChangeOrganBlood = this.onChangeOrganBlood.bind(this);
         this.searchOrgan = this.searchOrgan.bind(this);
 
+    }
+
+    componentDidMount() {
+        axios.get('http://localhost:4000/organs/')
+            .then(response => {
+                this.setState({ organs: response.data });
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
     }
 
     organList() {
